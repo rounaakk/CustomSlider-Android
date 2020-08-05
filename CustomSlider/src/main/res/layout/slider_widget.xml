@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/loc"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:tint="#99FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_location" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/sliderCard"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loc">
+
+        <LinearLayout
+            android:id="@+id/sliderLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <ImageView
+                android:id="@+id/firstBlock"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="#FFFF00" />
+
+            <ImageView
+                android:id="@+id/secondBlock"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="10"
+                android:background="#0000FF" />
+
+            <ImageView
+                android:id="@+id/thirdBlock"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="80"
+                android:background="#FF0000" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#99FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/sliderCard"
+        app:layout_constraintTop_toBottomOf="@+id/sliderCard"
+        tools:text="min" />
+
+    <TextView
+        android:id="@+id/tv_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#99FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/sliderCard"
+        app:layout_constraintTop_toBottomOf="@+id/sliderCard"
+        tools:text="max" />
+
+    <TextView
+        android:id="@+id/tv_res"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#99FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/loc"
+        app:layout_constraintStart_toStartOf="@+id/loc"
+        app:layout_constraintTop_toBottomOf="@+id/sliderCard"
+        tools:text="Res" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
