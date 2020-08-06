@@ -15,7 +15,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.Rounak122:CustomSlider-Android:0.1.0'
+	        implementation 'com.github.Rounak122:CustomSlider-Android:0.2.0'
 	}
   
 # Usage
