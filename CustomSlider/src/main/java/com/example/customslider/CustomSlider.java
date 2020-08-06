@@ -8,17 +8,19 @@ import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class CustomSlider extends ConstraintLayout {
 
-    float min, max, normalMin, normalMax, res;
+
     LinearLayout sliderLayout;
-    int sl_width;
+
     private ImageView firstBlock, secondBlock, thirdBlock, loc;
     private TextView tv_min, tv_max, tv_res;
 
@@ -41,9 +43,6 @@ public class CustomSlider extends ConstraintLayout {
     public void init() {
 
         LayoutInflater.from(getContext()).inflate(R.layout.slider_widget, this);
-        firstBlock = findViewById(R.id.firstBlock);
-        secondBlock = findViewById(R.id.secondBlock);
-        thirdBlock = findViewById(R.id.thirdBlock);
         loc = findViewById(R.id.loc);
 
         tv_max = findViewById(R.id.tv_max);
@@ -57,12 +56,13 @@ public class CustomSlider extends ConstraintLayout {
 
 
     public void setValues(float min, float max, float normalMin, float normalMax, float res, int sliderWholeLayoutWidth) {
-        this.min = min;
-        this.max = max;
-        this.normalMin = normalMin;
-        this.normalMax = normalMax;
-        this.res = res;
-        this.sl_width = sliderWholeLayoutWidth;
+
+
+        //creating imageviews
+        ImageView firstBlock = new ImageView(getContext());
+        ImageView secondBlock = new ImageView(getContext());
+        ImageView thirdBlock = new ImageView(getContext());
+
 
         //fb is firstBlock and Likewise
         float fbWeight = (normalMin * 100) / (max - min);
@@ -70,10 +70,12 @@ public class CustomSlider extends ConstraintLayout {
         float tbWeight = 100 - fbWeight - sbWeight;
 
         float resPos = (res * 100) / (max - min);
-
-        float resposInDp = ((resPos * (sl_width - 40)) / 100) + 10;
+        float resposInDp = ((resPos * (sliderWholeLayoutWidth - 40)) / 100) + 10;
         int resposInPx = (int) (resposInDp * Resources.getSystem().getDisplayMetrics().density);
 
+        Log.i("resp", String.valueOf(resPos));
+        Log.i("respDP", String.valueOf(resposInDp));
+        Log.i("respPX", String.valueOf(resposInPx));
 
         /*Check if i/p is float or int
           also if it is overlapping min/max text
@@ -114,16 +116,8 @@ public class CustomSlider extends ConstraintLayout {
             loc.setColorFilter(Color.argb(225, 255, 255, 0), PorterDuff.Mode.SRC_IN);
 
         }
-//        if (resPos>=(fbWeight+sbWeight)){
-//            loc.setColorFilter(Color.argb(225,225,0,0), PorterDuff.Mode.SRC_IN );
-//        }
 
-//        Log.i("weight", String.valueOf(fbWeight));
-//        Log.i("weight", String.valueOf(sbWeight));
-//        Log.i("weight", String.valueOf(resPos));
         sliderLayout.setWeightSum(100f);
-
-
         LayoutParams lp = (LayoutParams) loc.getLayoutParams();
         lp.leftMargin = resposInPx;
 
@@ -133,11 +127,59 @@ public class CustomSlider extends ConstraintLayout {
         secondBlock.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, sbWeight));
         thirdBlock.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, tbWeight));
 
+        firstBlock.setBackgroundColor(Color.YELLOW);
+        secondBlock.setBackgroundColor(Color.BLUE);
+        thirdBlock.setBackgroundColor(Color.RED);
 
-//        double sl_width= sliderLayout.getWidth();
-        Log.i("slwidth", String.valueOf(sl_width));
-
+        sliderLayout.addView(firstBlock);
+        sliderLayout.addView(secondBlock);
+        sliderLayout.addView(thirdBlock);
     }
 
 
+    public void setMultipleValues(int numberOfRegions, String[] colors, float[] weightOutOf100, int result, int sliderWholeLayoutWidth) {
+
+        try {
+
+            sliderLayout.setWeightSum(100f);
+            sliderLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+
+            //Inflating ImageViews and setting colors
+            for (int i = 0; i < numberOfRegions; i++) {
+                ImageView imgView = new ImageView(getContext());
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT, weightOutOf100[i]);
+                imgView.setLayoutParams(lp);
+                imgView.setBackgroundColor(Color.parseColor(colors[i]));
+                sliderLayout.addView(imgView);
+            }
+
+            float res = (float) ((100 / numberOfRegions) * (result - 0.5));
+            float resItr = res;
+
+            int k = 0;
+            while (resItr > 0) {
+                resItr = resItr - weightOutOf100[k];
+                k++;
+            }
+            loc.setColorFilter(Color.parseColor(colors[k - 1]));
+
+            //res setup
+            float resposInDp = ((res * (sliderWholeLayoutWidth - 40)) / 100) + 10;
+            int resposInPx = (int) (resposInDp * Resources.getSystem().getDisplayMetrics().density);
+
+
+            Log.i("resposinpx", String.valueOf(resposInPx));
+            Log.i("resposindp", String.valueOf(resposInDp));
+            Log.i("resposinres", String.valueOf(res));
+
+            LayoutParams lp = (LayoutParams) loc.getLayoutParams();
+            lp.leftMargin = resposInPx;
+            loc.setLayoutParams(lp);
+        } catch (Exception e) {
+            Log.e("ERROR CAUSE", " Check the parameters of setMultipleValues ");
+            Toast.makeText(getContext(), "ERROR : Check the parameters of setMultipleValues", Toast.LENGTH_LONG).show();
+        }
+
+    }
 }

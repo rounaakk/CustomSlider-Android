@@ -31,28 +31,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:weightSum="100">
-
-            <ImageView
-                android:id="@+id/firstBlock"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:background="#FFFF00" />
-
-            <ImageView
-                android:id="@+id/secondBlock"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="10"
-                android:background="#0000FF" />
-
-            <ImageView
-                android:id="@+id/thirdBlock"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="80"
-                android:background="#FF0000" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
