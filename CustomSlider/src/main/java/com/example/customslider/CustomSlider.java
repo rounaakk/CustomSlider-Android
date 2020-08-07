@@ -21,7 +21,7 @@ public class CustomSlider extends ConstraintLayout {
 
     LinearLayout sliderLayout;
 
-    private ImageView firstBlock, secondBlock, thirdBlock, loc;
+    private ImageView loc;
     private TextView tv_min, tv_max, tv_res;
 
 
