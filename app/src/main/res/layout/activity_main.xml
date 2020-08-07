@@ -14,6 +14,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <com.example.customslider.CustomInfoSlider
+        android:id="@+id/customInfoSlider"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customSlider1" />
+
     <com.example.customslider.CustomSlider
         android:id="@+id/customSlider2"
         android:layout_width="300dp"
