@@ -65,11 +65,11 @@ public class CustomSlider extends ConstraintLayout {
 
 
         //fb is firstBlock and Likewise
-        float fbWeight = (normalMin * 100) / (max - min);
+        float fbWeight = ((normalMin - min) * 100) / (max - min);
         float sbWeight = ((normalMax - normalMin) * 100) / (max - min);
         float tbWeight = 100 - fbWeight - sbWeight;
 
-        float resPos = (res * 100) / (max - min);
+        float resPos = ((res - min) * 100) / (max - min);
         float resposInDp = ((resPos * (sliderWholeLayoutWidth - 40)) / 100) + 10;
         int resposInPx = (int) (resposInDp * Resources.getSystem().getDisplayMetrics().density);
 
@@ -109,11 +109,11 @@ public class CustomSlider extends ConstraintLayout {
 
         //Changing color of loc
         if (resPos >= (fbWeight + sbWeight)) {
-            loc.setColorFilter(Color.argb(225, 225, 0, 0), PorterDuff.Mode.SRC_IN);
+            loc.setColorFilter(Color.parseColor("#ffdd00"), PorterDuff.Mode.SRC_IN);
         } else if (resPos >= fbWeight && resPos < (fbWeight + sbWeight)) {
-            loc.setColorFilter(Color.argb(225, 0, 0, 255), PorterDuff.Mode.SRC_IN);
+            loc.setColorFilter(Color.parseColor("#0b00b0"), PorterDuff.Mode.SRC_IN);
         } else {
-            loc.setColorFilter(Color.argb(225, 255, 255, 0), PorterDuff.Mode.SRC_IN);
+            loc.setColorFilter(Color.parseColor("#CC0022"), PorterDuff.Mode.SRC_IN);
 
         }
 
@@ -127,9 +127,9 @@ public class CustomSlider extends ConstraintLayout {
         secondBlock.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, sbWeight));
         thirdBlock.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT, tbWeight));
 
-        firstBlock.setBackgroundColor(Color.YELLOW);
-        secondBlock.setBackgroundColor(Color.BLUE);
-        thirdBlock.setBackgroundColor(Color.RED);
+        firstBlock.setBackgroundColor(Color.parseColor("#ffdd00"));
+        secondBlock.setBackgroundColor(Color.parseColor("#0b00b0"));
+        thirdBlock.setBackgroundColor(Color.parseColor("#CC0022"));
 
         sliderLayout.addView(firstBlock);
         sliderLayout.addView(secondBlock);
