@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Slider with 3 regions (low, normal,high) | Use SetValues method for that
         customSlider1 = findViewById(R.id.customSlider1);
-        customSlider1.setValues(0, 40000, 20000, 30000, 30000, 300);
+        customSlider1.setValues(11, 22, 14, 18, 15, 300);
+
 
         /* Slider with unlimited regions
          result will be set irrespective of weight, so it works only when all the weight are equal
