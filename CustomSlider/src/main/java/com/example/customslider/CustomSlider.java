@@ -109,11 +109,11 @@ public class CustomSlider extends ConstraintLayout {
 
         //Changing color of loc
         if (resPos >= (fbWeight + sbWeight)) {
-            loc.setColorFilter(Color.parseColor("#ffdd00"), PorterDuff.Mode.SRC_IN);
+            loc.setColorFilter(Color.parseColor("#CC0022"), PorterDuff.Mode.SRC_IN);
         } else if (resPos >= fbWeight && resPos < (fbWeight + sbWeight)) {
             loc.setColorFilter(Color.parseColor("#0b00b0"), PorterDuff.Mode.SRC_IN);
         } else {
-            loc.setColorFilter(Color.parseColor("#CC0022"), PorterDuff.Mode.SRC_IN);
+            loc.setColorFilter(Color.parseColor("#ffdd00"), PorterDuff.Mode.SRC_IN);
 
         }
 
